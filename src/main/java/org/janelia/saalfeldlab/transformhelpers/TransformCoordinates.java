@@ -46,7 +46,7 @@ public class TransformCoordinates implements Callable<Void> {
 		RealTransform transform = N5DisplacementField.open(
 				n5,
 				inverse ? "/invdfield" : "/dfield",
-				false);
+				inverse);
 
 		final double[] p = new double[3];
 		final double[] q = new double[3];
