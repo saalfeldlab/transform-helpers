@@ -41,7 +41,12 @@
 		<dependency>
 			<groupId>cisd</groupId>
 			<artifactId>jhdf5</artifactId>
-	</dependency>
+		</dependency>
+		<dependency>
+			<groupId>info.picocli</groupId>
+			<artifactId>picocli</artifactId>
+			<version>3.5.2</version>
+		</dependency>
 	</dependencies>
 
 	<repositories>
