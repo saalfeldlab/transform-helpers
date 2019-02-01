@@ -3,6 +3,11 @@ Helper tools and API to apply transformations to coordinates and images
 
 ## Build
 
+Currently depends on two SNAPSHOTS, i.e. latest master branch builds:
+
+1. [imglib2-realtransform](https://github.com/imglib/imglib2-realtransform)
+2. [n5-imglib2](https://github.com/saalfeldlab/n5-imglib2)
+
 Normal
 ```bash
 mvn clean install
