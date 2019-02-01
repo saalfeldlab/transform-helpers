@@ -13,17 +13,7 @@ import org.janelia.saalfeldlab.n5.imglib2.N5DisplacementField;
 
 import ch.systemsx.cisd.hdf5.HDF5Factory;
 import ch.systemsx.cisd.hdf5.IHDF5Reader;
-import net.imglib2.RealRandomAccessible;
-import net.imglib2.img.array.ArrayImg;
-import net.imglib2.img.array.ArrayImgs;
-import net.imglib2.img.basictypeaccess.array.ByteArray;
-import net.imglib2.interpolation.randomaccess.NLinearInterpolatorFactory;
-import net.imglib2.realtransform.InverseRealTransform;
 import net.imglib2.realtransform.RealTransform;
-import net.imglib2.realtransform.RealViews;
-import net.imglib2.type.numeric.integer.UnsignedByteType;
-import net.imglib2.view.ExtendedRandomAccessibleInterval;
-import net.imglib2.view.Views;
 import picocli.CommandLine;
 import picocli.CommandLine.Option;
 
@@ -78,13 +68,5 @@ public class TransformCoordinates implements Callable<Void> {
 		}
 
 		return null;
-	}
-
-	public void testImg(final InverseRealTransform transform) {
-
-		ArrayImg<UnsignedByteType, ByteArray> img = ArrayImgs.unsignedBytes(100, 200, 300);
-		ExtendedRandomAccessibleInterval<UnsignedByteType, ArrayImg<UnsignedByteType, ByteArray>> extended = Views.extendZero(img);
-		RealRandomAccessible<UnsignedByteType> interpolant = Views.interpolate(extended, new NLinearInterpolatorFactory<>());
-		RealViews.transformReal(interpolant, transform);
 	}
 }

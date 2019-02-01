@@ -96,7 +96,7 @@
 							<shadedArtifactId>${project.artifactId}</shadedArtifactId>
 							<shadedArtifactAttached>true</shadedArtifactAttached>
 							<!-- Do not minimize for now to speed up packaging. -->
-							<!-- <minimzeJar>true</minimzeJar> -->
+							<minimzeJar>true</minimzeJar>
 						</configuration>
 						<executions>
 							<execution>
