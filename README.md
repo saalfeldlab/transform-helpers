@@ -3,6 +3,12 @@ Helper tools and API to apply transformations to coordinates and images
 
 ## Build
 
+Requires JDK 8 and maven 3.  On Ubuntu
+
+```
+sudo apt install openjdk-8-jdk maven
+```
+
 Normal
 ```bash
 mvn clean install
