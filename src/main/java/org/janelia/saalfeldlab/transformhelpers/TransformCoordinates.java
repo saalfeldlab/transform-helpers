@@ -32,6 +32,9 @@ public class TransformCoordinates implements Callable<Void> {
 	@Option(names = {"-i", "--inverse"}, required = false)
 	private boolean inverse;
 
+	@Option(names = {"-l", "--level"}, required = false, description = "level [0-n] of multiresolution h5 registration")
+	private int level = -1;
+
 	public static void main(final String... args) {
 
 		CommandLine.call(new TransformCoordinates(), args);
@@ -42,10 +45,11 @@ public class TransformCoordinates implements Callable<Void> {
 
 		final IHDF5Reader hdf5Reader = HDF5Factory.openForReading(transformFile);
 		final N5HDF5Reader n5 = new N5HDF5Reader(hdf5Reader, new int[]{16, 16, 16});
-
+                
+                String path = (level>=0 ? level + "/" : "") + (inverse ? "/invdfield" : "/dfield");
 		RealTransform transform = N5DisplacementField.open(
 				n5,
-				inverse ? "/invdfield" : "/dfield",
+				path,
 				inverse);
 
 		final double[] p = new double[3];
