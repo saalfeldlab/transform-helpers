@@ -19,6 +19,7 @@ import picocli.CommandLine.Option;
 
 /**
  * @author Stephan Saalfeld &lt;saalfelds@janelia.hhmi.org&gt;
+ * @author John Bogovic &lt;saalfelds@janelia.hhmi.org&gt;
  *
  */
 public class TransformCoordinates implements Callable<Void> {
@@ -32,7 +33,8 @@ public class TransformCoordinates implements Callable<Void> {
 	@Option(names = {"-i", "--inverse"}, required = false)
 	private boolean inverse;
 
-	@Option(names = {"-l", "--level"}, required = false, description = "level [0-n] of multiresolution h5 registration")
+	@Option(names = {"-l", "--level"}, required = false, description = "level [0-n] of multiresolution h5 registration."
+			+ "If not specified, will choose the finest level present.")
 	private int level = -1;
 
 	public static void main(final String... args) {
@@ -45,8 +47,14 @@ public class TransformCoordinates implements Callable<Void> {
 
 		final IHDF5Reader hdf5Reader = HDF5Factory.openForReading(transformFile);
 		final N5HDF5Reader n5 = new N5HDF5Reader(hdf5Reader, new int[]{16, 16, 16});
-                
-                String path = (level>=0 ? level + "/" : "") + (inverse ? "/invdfield" : "/dfield");
+
+		String levelString; 
+		if( level >= 0 )
+			levelString = String.format( "/%d", level );
+		else 
+			levelString = n5.exists( "/0" ) ? "/0" : "";
+
+		String path = levelString + (inverse ? "/invdfield" : "/dfield");
 		RealTransform transform = N5DisplacementField.open(
 				n5,
 				path,
