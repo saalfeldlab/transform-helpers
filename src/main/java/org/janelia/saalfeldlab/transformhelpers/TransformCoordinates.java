@@ -66,7 +66,7 @@ public class TransformCoordinates implements Callable<Void> {
 		try (Stream<String> stream = Files.lines(Paths.get(coordinatesFile))) {
 
 			stream.forEach(line -> {
-				final String[] coordinates = line.split(",?\\s+");
+				final String[] coordinates = line.split("[,\\s]+");
 				if (coordinates.length == 3) {
 					p[0] = Double.parseDouble(coordinates[0]);
 					p[1] = Double.parseDouble(coordinates[1]);
