@@ -8,10 +8,13 @@
 	<parent>
 		<groupId>org.scijava</groupId>
 		<artifactId>pom-scijava</artifactId>
-		<version>30.0.0</version>
+		<version>31.1.0</version>
 	</parent>
 	<properties>
 		<enforcer.skip>true</enforcer.skip>
+
+		<imglib2-realtransform.version>3.1.2</imglib2-realtransform.version>
+		<jitk-tps.version>3.0.2</jitk-tps.version>
 
 		<n5.version>2.5.0</n5.version>
 		<n5-imglib2.version>4.0.0</n5-imglib2.version>
